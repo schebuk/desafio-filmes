@@ -6,12 +6,12 @@
         {{status}}
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="email@exemplo.com.br" required>
-            <label for="floatingInput">Seu e-mail</label>
+            <input type="email" class="form-control" id="floatingInput1" name="email" placeholder="email@exemplo.com.br" required>
+            <label for="floatingInput1">Seu e-mail</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" name="senha" placeholder="Senha" required>
-            <label for="floatingPassword">Sua senha</label>
+            <input type="password" class="form-control" id="floatingPassword2" name="senha" placeholder="Senha" required>
+            <label for="floatingPassword2">Sua senha</label>
         </div>
 
         <div class="mb-3"></div>

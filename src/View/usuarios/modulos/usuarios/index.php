@@ -1,12 +1,6 @@
 <h1>{{header}}</h1>
 
-<div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>
-
-<a href="{{APP}}/usuario/usuarios/novo">
-    <button type="button" class="btn btn-success btn-sm">
-        <em class="fas fa-plus-square fa-fw"></em> Cadastrar Usuário
-    </button>
-</a>
+{{botaoAdd}}
 
 <div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>
 

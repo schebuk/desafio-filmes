@@ -15,13 +15,13 @@ final class Usuario extends Pagina
     private static function obterItemUsuario($request, &$obPaginacao): string
     {
         $itens = '';
-        $qtdeTotal = ModelUsuario::obterUsuarios('status = "A"', null, null, 'COUNT(*) AS qtde')->fetchObject()->qtde;
+        $qtdeTotal = ModelUsuario::obterUsuarios('status = "A" AND id = "' . $_SESSION['usuario']['id'] . '"', null, null, 'COUNT(*) AS qtde')->fetchObject()->qtde;
 
         $queryParams = $request->getQueryParams();
         $pagAtual = $queryParams['pagina'] ?? 1;
 
         $obPaginacao = new Paginacao($qtdeTotal, $pagAtual, 2);
-        $retorno = ModelUsuario::obterUsuarios('status = "A"', 'id DESC', $obPaginacao->obterLimite());
+        $retorno = ModelUsuario::obterUsuarios('status = "A" AND id = "' . $_SESSION['usuario']['id'] . '"', 'id DESC', $obPaginacao->obterLimite());
         while ($obUser = $retorno->fetchObject(ModelUsuario::class)) {
             $dados = [
                 'id' => $obUser->id,
@@ -52,10 +52,23 @@ final class Usuario extends Pagina
         }
     }
 
+    private static function listarBotaoAdicionar(): string
+    {
+        $html = '<div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>';
+        $html .= '<a href="{{APP}}/usuario/usuarios/novo">';
+        $html .= '<button type="button" class="btn btn-success btn-sm">';
+        $html .= '<em class="fas fa-plus-square fa-fw"></em> Cadastrar Usuário';
+        $html .= '</button>';
+        $html .= '</a>';
+
+        return $html;
+    }
+
     public static function obterUsuarios(object $request): string
     {
         $dados = [
             'header' => 'Usuários',
+            'botaoAdd' => $_SESSION['usuario']['funcao'] === 'ADM' ? self::listarBotaoAdicionar() : '',
             'itens' => self::obterItemUsuario($request, $obPaginacao),
             'paginacao' => parent::obterPaginacao($request, $obPaginacao),
             'status' => self::obterStatus($request),

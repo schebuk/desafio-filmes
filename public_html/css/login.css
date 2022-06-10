@@ -24,10 +24,15 @@ body {
     z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin #floatingInput1 {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.form-signin #floatingInput2 {
+    border-radius: 0;
+    margin-bottom: -1px;
 }
 
 .form-signin #floatingPassword1 {

@@ -30,6 +30,7 @@ final class ModelUsuario
             'nome' => $this->nome,
             'email' => $this->email,
             'senha' => $this->senha,
+            'status' => 'A',
             'criado_em' => $this->data,
         ]);
 

@@ -16,10 +16,12 @@ class Sessao
     public static function login($obUser): bool
     {
         self::iniciar();
-        $_SESSION['user'] = [
+        $_SESSION['usuario'] = [
             'id' => $obUser->id,
             'nome' => $obUser->nome,
             'email' => $obUser->email,
+            'status' => $obUser->status,
+            'funcao' => $obUser->funcao,
         ];
         return true;
     }
@@ -30,20 +32,20 @@ class Sessao
 
         if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
             session_destroy();
-            unset($_SESSION['user']);
+            unset($_SESSION['usuario']);
         }
         $_SESSION['LAST_ACTIVITY'] = time();
 
-        return isset($_SESSION['user']['id']);
+        return isset($_SESSION['usuario']['id']);
     }
 
     public static function logout(): bool
     {
         self::iniciar();
 
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['usuario'])) {
             session_destroy();
-            unset($_SESSION['user']);
+            unset($_SESSION['usuario']);
             return true;
         }
         return false;

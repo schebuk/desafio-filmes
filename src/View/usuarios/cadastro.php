@@ -6,15 +6,19 @@
         {{status}}
 
         <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="email@exemplo.com.br" required>
-            <label for="floatingInput">Seu e-mail</label>
+            <input type="text" class="form-control" id="floatingInput1" name="nome" placeholder="Seu nome" maxlength="60" required>
+            <label for="floatingInput1">Seu nome</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword1" name="senha1" placeholder="Senha" required>
+            <input type="email" class="form-control" id="floatingInput2" name="email" placeholder="email@exemplo.com.br" maxlength="60" required>
+            <label for="floatingInput2">Seu e-mail</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword1" name="senha1" placeholder="Senha" maxlength="20" required>
             <label for="floatingPassword1">Sua senha</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword2" name="senha2" placeholder="Confirmação de senha" required>
+            <input type="password" class="form-control" id="floatingPassword2" name="senha2" placeholder="Confirmação de senha" maxlength="20" required>
             <label for="floatingPassword2">Confirmação de senha</label>
         </div>
 
