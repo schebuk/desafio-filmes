@@ -2,7 +2,7 @@
 
 ## Para acessar o projeto em um servidor remoto
 
-- Acesse https://agenciab33.com.br/desafio
+- Acesse https://agenciab33.com.br/desafio e clique no link `Catálogo de Filmes` no menu principal. Dessa forma a API será consumida e será gerada nova carga ao banco de dados.
 - Utilize o usuário `desafio@jsl.com.br` e senha `Jsl@123` como usuário administrado. Você também pode cadastrar um novo usuário pela página de login do `Acesso do Usuário`, mas suas permissões serão limitadas.
 - Ao clicar no menu `Acesso do Usuário` é possível fazer um cadastro de usuário para acesso ao painel de controle.
 
