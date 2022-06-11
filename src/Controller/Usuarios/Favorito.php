@@ -36,18 +36,17 @@ final class Favorito extends Pagina
             $obPaginacao->obterLimite(),
             'fa.*, fi.id AS idFilme,
             fi.titulo AS tituloFilme,
-            fi.genero AS generoFilme,
             fi.descricao AS descricaoFilme,
             fi.classificacao AS classificacaoFilme,
             fi.criado_em AS criadoEm',
             'tb_filmes AS fi',
             'fa.filme_id = fi.id'
         );
+
         while ($favoritos = $retorno->fetchObject(ModelFavorito::class)) {
             $dados = [
                 'id' => $favoritos->idFilme,
                 'titulo' => $favoritos->tituloFilme,
-                'genero' => $favoritos->generoFilme,
                 'descricao' => $favoritos->descricaoFilme,
                 'classificacao' => $favoritos->classificacaoFilme,
                 'data' => date('d/m/Y', strtotime($favoritos->criadoEm)),
@@ -79,7 +78,9 @@ final class Favorito extends Pagina
     {
         $dados = [
             'header' => 'Filmes Favoritos',
-            'itens' => self::obterItemFilmeFavorito($request, $obPaginacao),
+            'itens' => !empty(self::obterItemFilmeFavorito($request, $obPaginacao)) ?
+                self::obterItemFilmeFavorito($request, $obPaginacao) :
+                Alerta::obterAlerta('danger', 'Não há filmes marcados como favoritos!'),
             'paginacao' => parent::obterPaginacao($request, $obPaginacao),
             'status' => self::obterStatus($request),
         ];

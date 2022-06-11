@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Src\Controller\Paginas;
 
+use Exception;
 use Resources\{
     Funcoes,
     View,
@@ -15,7 +16,8 @@ class Filme extends Pagina
     private static function consumirApiCurlTmdb(): array
     {
         $busca = 'Panico';
-        $url = 'https://api.themoviedb.org/3/search/movie?query=' . $busca . '&api_key=' . TMDB_KEY . '&language=pt-BR&page=1';
+        $url = 'https://api.themoviedb.org/3/search/movie?query=' .
+            $busca . '&api_key=' . TMDB_KEY . '&language=pt-BR&page=1';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -26,18 +28,22 @@ class Filme extends Pagina
 
     private static function validarSeFilmeEstaGravadoBd(array $filme): void
     {
-        $objFilme = new ModelFilme();
-        $objGravadoBd = $objFilme->obterFilmePorTmdbId($filme['id']);
-        if (!$objGravadoBd instanceof ModelFilme) {
-            $objFilme->tmdbId = $filme['id'];
-            $objFilme->titulo = $filme['original_title'];
-            $objFilme->imagem = !empty($filme['poster_path']) ?
-                'https://image.tmdb.org/t/p/w185' . $filme['poster_path'] : IMG . '/semImagem.png';
-            $objFilme->descricao = !empty($filme['overview']) ?
-                $filme['overview'] : 'Não há descrição cadastrada na API TMDB!';
-            $objFilme->classificacao = $filme['vote_average'];
+        try {
+            $objFilme = new ModelFilme();
+            $objGravadoBd = $objFilme->obterFilmePorTmdbId($filme['id']);
+            if (!$objGravadoBd instanceof ModelFilme) {
+                $objFilme->tmdbId = $filme['id'];
+                $objFilme->titulo = $filme['original_title'];
+                $objFilme->imagem = !empty($filme['poster_path']) ?
+                    'https://image.tmdb.org/t/p/w185' . $filme['poster_path'] : IMG . '/semImagem.png';
+                $objFilme->descricao = !empty($filme['overview']) ?
+                    $filme['overview'] : 'Não há descrição cadastrada na API TMDB!';
+                $objFilme->classificacao = $filme['vote_average'];
 
-            $objFilme->cadastrar();
+                $objFilme->cadastrar();
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
     }
 

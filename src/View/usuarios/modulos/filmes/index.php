@@ -4,4 +4,6 @@
 
 <div class="row">
     {{itens}}
+
+    {{paginacao}}
 </div>
