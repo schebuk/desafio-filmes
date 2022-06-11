@@ -52,18 +52,18 @@ Não esqueça das validações!
 
 # Boa sorte!
 
-# Para acessar o projeto em um servidor remoto
+### Para acessar o projeto em um servidor remoto
 
 - Acesse https://agenciab33.com.br/desafio
-- Ao clicar no menu `Acesso do Usuário` é possível fazer um cadastro de usuário para acesso ao painel de controle
+- Ao clicar no menu `Acesso do Usuário` é possível fazer um cadastro de usuário para acesso ao painel de controle.
 
-# Para iniciar o projeto
+### Para iniciar o projeto
 
 - Clone o projeto do repositório
 - Execute o composer install
 - Execute o composer dump-autoload
 - Crie um banco de dados com o nome que desejar e importe o arquivo `db_desafio.sql`
-- Altere o arquivo config\configDatabase.php com suas credenciais de acesso ao banco de dados
-- Altere o arquivo config\configDefinicoes.php onde é definido a constante APP para o diretório do seu projeto (local)
-- Localmente, acesse http://localhost/[NOME DO SEU DIRETORIO DO PROJETO]
-- Have fun!
+- Altere o arquivo `config\configDatabase.php` com suas credenciais de acesso ao banco de dados
+- Altere o arquivo `config\configDefinicoes.php` onde é definido a constante APP para o diretório do seu projeto (local)
+- Localmente, acesse http://localhost/`[NOME_DO_SEU_DIRETORIO_LOCAL_DO_PROJETO]`
+- Have fun and rock on!
