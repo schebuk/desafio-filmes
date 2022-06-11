@@ -15,13 +15,14 @@ final class Usuario extends Pagina
     private static function obterItemUsuario($request, &$obPaginacao): string
     {
         $itens = '';
-        $qtdeTotal = ModelUsuario::obterUsuarios('status = "A" AND id = "' . $_SESSION['usuario']['id'] . '"', null, null, 'COUNT(*) AS qtde')->fetchObject()->qtde;
+        $where = $_SESSION['usuario']['funcao'] !== 'ADM' ? 'AND id = "' . $_SESSION['usuario']['id'] . '"' : '';
+        $qtdeTotal = ModelUsuario::obterUsuarios('status = "A" ' . $where, null, null, 'COUNT(*) AS qtde')->fetchObject()->qtde;
 
         $queryParams = $request->getQueryParams();
         $pagAtual = $queryParams['pagina'] ?? 1;
 
-        $obPaginacao = new Paginacao($qtdeTotal, $pagAtual, 2);
-        $retorno = ModelUsuario::obterUsuarios('status = "A" AND id = "' . $_SESSION['usuario']['id'] . '"', 'id DESC', $obPaginacao->obterLimite());
+        $obPaginacao = new Paginacao($qtdeTotal, $pagAtual, 10);
+        $retorno = ModelUsuario::obterUsuarios('status = "A" ' . $where, 'id DESC', $obPaginacao->obterLimite());
         while ($obUser = $retorno->fetchObject(ModelUsuario::class)) {
             $dados = [
                 'id' => $obUser->id,
@@ -113,7 +114,7 @@ final class Usuario extends Pagina
 
         $dados = [
             'header' => 'Editar Usuário',
-            'nome' => $obUser->name,
+            'nome' => $obUser->nome,
             'email' => $obUser->email,
             'senha' => '',
             'required' => '',
@@ -148,9 +149,8 @@ final class Usuario extends Pagina
 
         $dados = [
             'header' => 'Apagar Usuário',
-            'nome' => $obUser->name,
+            'nome' => $obUser->nome,
             'email' => $obUser->email,
-            'senha' => $obUser->password,
         ];
         $content = View::renderizar('usuarios/modulos/usuarios/delete', $dados);
         return parent::obterPainel('Apagar Usuário - Usuário - Desafio JSL', $content, 'usuarios');

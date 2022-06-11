@@ -60,12 +60,15 @@ final class Login extends Pagina
         $usuario = new ModelUsuario();
         $usuario->nome = $postVars['nome'] ?? '';
         $usuario->email = $postVars['email'] ?? '';
-        if ($postVars['senha1'] === $postVars['senha2']) {
-            $usuario->senha = password_hash($postVars['senha1'], PASSWORD_BCRYPT) ?? '';
-            $usuario->cadastrar();
-            $request->obterRotar()->redirecionar('/usuarios/cadastro?status=criado');
-        } else {
-            $request->obterRotar()->redirecionar('/usuarios/cadastro?status=senha');
+
+        if ($postVars['senha1'] !== $postVars['senha2']) {
+            $request->obterRotar()->redirecionar('/usuario/cadastro?status=senhas-diferentes');
         }
+
+        $usuario->senha1 = password_hash($postVars['senha1'], PASSWORD_BCRYPT) ?? '';
+        $usuario->senha2 = password_hash($postVars['senha2'], PASSWORD_BCRYPT) ?? '';
+
+        $usuario->cadastrar($request);
+        $request->obterRotar()->redirecionar('/usuario/login?status=cadastrado');
     }
 }

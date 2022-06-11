@@ -21,4 +21,4 @@ define('SITE_KEY', '');
 define('SECRET_KEY', '');
 
 define('ROTAS', ['paginas', 'usuarios']);
-define('RESOURCES', ['Database', 'Paginacao', 'Request', 'Response', 'Router', 'Sessao', 'View',]);
+define('RESOURCES', ['Database', 'Funcoes', 'Paginacao', 'Request', 'Response', 'Router', 'Sessao', 'View',]);

@@ -29,8 +29,9 @@ final class ModelUsuario
         $this->id = (new Database('tb_usuarios'))->inserir([
             'nome' => $this->nome,
             'email' => $this->email,
-            'senha' => $this->senha,
+            'senha' => $this->senha1,
             'status' => 'A',
+            'funcao' => 'USR',
             'criado_em' => $this->data,
         ]);
 

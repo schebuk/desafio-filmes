@@ -27,7 +27,7 @@
         <button class="w-100 btn btn-sm btn-primary" type="submit">Cadastrar</button>
 
         <div class=" mt-3 mb-3">
-            <a href="{{APP}}/usuario/login">Já tem usuário? Fazer login.</a>
+            <a href="{{APP}}/usuario/login">Já tem usuário? Faça login!</a>
         </div>
 
         <div class=" mt-3 mb-3">

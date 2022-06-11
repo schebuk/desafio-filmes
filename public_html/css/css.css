@@ -3,3 +3,11 @@
 textarea {
     resize: none;
 }
+
+.card .card-body .card-title {
+    font-size: 1rem !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 2.35rem;
+}
+

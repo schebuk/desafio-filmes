@@ -67,14 +67,14 @@ $response->get('/usuario', [
 
 /** Filmes */
 
-// $response->get('/usuario/filmes', [
-//     'middlewares' => [
-//         'exigir-login',
-//     ],
-//     function ($request) {
-//         return new Response(200, Usuarios\Filmes::obterCatalogoFilmes($request));
-//     }
-// ]);
+$response->get('/usuario/filmes', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request) {
+        return new Response(200, Usuarios\Filme::obterCatalogoFilmes($request));
+    }
+]);
 
 // $response->get('/usuario/depoimentos/{id}/editar', [
 //     'middlewares' => [
@@ -111,6 +111,17 @@ $response->get('/usuario', [
 //         return new Response(200, Usuarios\Depoimento::definirApagarDepoimento($request, $id));
 //     }
 // ]);
+
+/** Favoritos */
+
+$response->get('/usuario/favoritos', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request) {
+        return new Response(200, Usuarios\Favorito::obterFilmesFavoritos($request));
+    }
+]);
 
 /** Usuários */
 

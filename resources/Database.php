@@ -95,6 +95,27 @@ final class Database
         return $this->executar($query);
     }
 
+    public function join($where = null, $order = null, $limit = null, $fields = '*', $tableJoin = null, $join = null)
+    {
+        if (!empty($where)) {
+            $where = strlen($where) ? 'WHERE ' . $where : '';
+        }
+        if (!empty($order)) {
+            $order = strlen($order) ? 'ORDER BY ' . $order : '';
+        }
+        if (!empty($limit)) {
+            $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
+        }
+        if (!empty($tableJoin)) {
+            $tableJoin = strlen($tableJoin) ? $tableJoin : '';
+        }
+        if (!empty($join)) {
+            $join = strlen($join) ? 'ON ' . $join : '';
+        }
+        $query = 'SELECT ' . $fields . ' FROM ' . $this->table . ' JOIN ' . $tableJoin . ' ' . $join . ' ' . $where . ' ' . $order . ' ' . $limit;
+        return $this->executar($query);
+    }
+
     public function atualizar($where, $values)
     {
         $fields = array_keys($values);
