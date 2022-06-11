@@ -8,6 +8,14 @@ use Resources\Database;
 
 final class ModelFilme
 {
+    public $id;
+    public $tmdbId;
+    public $titulo;
+    public $imagem;
+    public $descricao;
+    public $classificacao;
+    public $data;
+
     public static function listarFilmes($where = null, $order = null, $limit = null, $field = '*')
     {
         return (new Database('tb_filmes'))->selecionar($where, $order, $limit, $field);
@@ -18,25 +26,24 @@ final class ModelFilme
         return self::listarFilmes('id = ' . $id)->fetchObject(self::class);
     }
 
-    public static function consumirApiTmdb(): void
+    public static function obterFilmePorTmdbId(int $tmdbId)
     {
-        $apiKey = '04b5443303a7051dc3f419e4424a8399';
-        $busca = '007';
+        return self::listarFilmes('tmdb_id = ' . $tmdbId)->fetchObject(self::class);
+    }
 
-        $url = "http://api.themoviedb.org/3/search/movie?query={$busca}&api_key={$apiKey}&language=pt-BR";
-        $json = file_get_contents($url);
-        $obj = json_decode($json);
+    public function cadastrar(): bool
+    {
+        $this->data = date('Y-m-d H:m:i');
+        $this->id = (new Database('tb_filmes'))->inserir([
+            'tmdb_id ' => $this->tmdbId,
+            'titulo' => $this->titulo,
+            'imagem' => $this->imagem,
+            'descricao' => $this->descricao,
+            'classificacao' => $this->classificacao,
+            'status' => 'A',
+            'criado_em' => $this->data,
+        ]);
 
-        $totalDePaginas = $obj->total_pages;
-
-        for ($x = 1; $x <= $totalDePaginas; $x++) {
-            $urlSingle = "http://api.themoviedb.org/3/search/movie?query={$busca}&api_key={$apiKey}&language=pt-BR&page={$x}";
-            $jsonSingle = file_get_contents($urlSingle);
-            $objSingle = json_decode($jsonSingle);
-
-            foreach ($objSingle->results as $resultado) {
-                echo $resultado->title;
-            }
-        }
+        return true;
     }
 }

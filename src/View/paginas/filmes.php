@@ -1,6 +1,7 @@
-<div class="container">
-    <h1 class="display-6 mb-3">{{titulo}}</h1>
-    <div class="row">
-        {{itens}}
-    </div>
+<h1 class="display-6 mb-3">{{titulo}}</h1>
+
+<div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>
+
+<div class="row">
+    {{itens}}
 </div>

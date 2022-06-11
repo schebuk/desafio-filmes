@@ -1,5 +1,5 @@
 <div class="col-3">
-    <div class="card mb-3" style="width: 15rem;">
+    <div class="card mb-3" style="width: 16rem;">
         <img src="{{imagem}}" class="card-img-top" style="height:277px" alt="{{titulo}}">
         <div class="card-body">
             <h5 class="card-title">{{titulo}}</h5>
@@ -10,8 +10,5 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item"><small>Classificação:</small> {{classificacao}}</li>
         </ul>
-        <div class="card-body">
-            <a href="#" class="card-link"><em class="fas fa-heart fa-fw"></em></a>
-        </div>
     </div>
 </div>

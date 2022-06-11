@@ -1,4 +1,4 @@
-<h1>{{header}}</h1>
+<h1 class="display-6 mb-3">{{header}}</h1>
 
 {{botaoAdd}}
 
