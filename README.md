@@ -65,5 +65,5 @@ Não esqueça das validações!
 - Crie um banco de dados com o nome que desejar e importe o arquivo `db_desafio.sql`
 - Altere o arquivo `config\configDatabase.php` com suas credenciais de acesso ao banco de dados
 - Altere o arquivo `config\configDefinicoes.php` onde é definido a constante APP para o diretório do seu projeto (local)
-- Localmente, acesse http://localhost/**[NOME_DO_SEU_DIRETORIO_LOCAL_DO_PROJETO]**
-- Have fun and rock on!
+- Localmente, acesse http://localhost/SEU_DIRETORIO_LOCAL
+- Have fun and rock on :metal:!
