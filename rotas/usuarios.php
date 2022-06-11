@@ -72,45 +72,9 @@ $response->get('/usuario/filmes', [
         'exigir-login',
     ],
     function ($request) {
-        return new Response(200, Usuarios\Filme::obterCatalogoFilmes($request));
+        return new Response(200, Usuarios\Filme::listarFilmes($request));
     }
 ]);
-
-// $response->get('/usuario/depoimentos/{id}/editar', [
-//     'middlewares' => [
-//         'exigir-login',
-//     ],
-//     function ($request, $id) {
-//         return new Response(200, Usuarios\Depoimento::obterEditarDepoimento($request, $id));
-//     }
-// ]);
-
-// $response->post('/usuario/depoimentos/{id}/editar', [
-//     'middlewares' => [
-//         'exigir-login',
-//     ],
-//     function ($request, $id) {
-//         return new Response(200, Usuarios\Depoimento::definirEditarDepoimento($request, $id));
-//     }
-// ]);
-
-// $response->get('/usuario/depoimentos/{id}/apagar', [
-//     'middlewares' => [
-//         'exigir-login',
-//     ],
-//     function ($request, $id) {
-//         return new Response(200, Usuarios\Depoimento::obterApagarDepoimento($request, $id));
-//     }
-// ]);
-
-// $response->post('/usuario/depoimentos/{id}/apagar', [
-//     'middlewares' => [
-//         'exigir-login',
-//     ],
-//     function ($request, $id) {
-//         return new Response(200, Usuarios\Depoimento::definirApagarDepoimento($request, $id));
-//     }
-// ]);
 
 /** Favoritos */
 

@@ -13,12 +13,13 @@ define('CSS', ASSETS . '/css');
 define('JS', ASSETS . '/js');
 define('IMG', ASSETS . '/img');
 define('FONTS', ASSETS . '/fonts/css');
-define('REMOTO', ASSETS . 'https://agenciab33.com.br/desafio/public_html/');
+define('REMOTO', ASSETS . 'https://agenciab33.com.br/desafio');
 
 define('MANUTENCAO', false);
 
 define('SITE_KEY', '');
 define('SECRET_KEY', '');
+define('TMDB_KEY', '04b5443303a7051dc3f419e4424a8399');
 
 define('ROTAS', ['paginas', 'usuarios']);
 define('RESOURCES', ['Database', 'Funcoes', 'Paginacao', 'Request', 'Response', 'Router', 'Sessao', 'View',]);

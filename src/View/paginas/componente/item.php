@@ -1,8 +1,17 @@
-<div class="card text-dark mb-3">
-    <h5 class="card-header"> {{titulo}} <small style="font-size:0.75rem">Adicionado em {{data}}</small></h5>
-    <div class="card-body">
-        Gênero: {{genero}}
-        Classificação: {{classificacao}}
-        {{descricao}}
+<div class="col-3">
+    <div class="card mb-3" style="width: 15rem;">
+        <img src="{{imagem}}" class="card-img-top" style="height:277px" alt="{{titulo}}">
+        <div class="card-body">
+            <h5 class="card-title">{{titulo}}</h5>
+            <p class="card-text">
+                {{descricao}}
+            </p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><small>Classificação:</small> {{classificacao}}</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link"><em class="fas fa-heart fa-fw"></em></a>
+        </div>
     </div>
 </div>
