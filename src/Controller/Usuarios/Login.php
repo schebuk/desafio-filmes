@@ -35,13 +35,13 @@ final class Login extends Pagina
             return self::obterLogin($request, 'Senha inválida!');
         }
         Sessao::login($obUser);
-        $request->obterRotar()->redirecionar('/usuario');
+        $request->obterRota()->redirecionar('/usuario');
     }
 
     public static function setLogout($request): mixed
     {
         Sessao::logout();
-        $request->obterRotar()->redirecionar('/usuario/login');
+        $request->obterRota()->redirecionar('/usuario/login');
     }
 
     public static function obterCadastrarNovoUsuario($request, $errorMessage = null): string
@@ -62,13 +62,13 @@ final class Login extends Pagina
         $usuario->email = $postVars['email'] ?? '';
 
         if ($postVars['senha1'] !== $postVars['senha2']) {
-            $request->obterRotar()->redirecionar('/usuario/cadastro?status=senhas-diferentes');
+            $request->obterRota()->redirecionar('/usuario/cadastro?status=senhas-diferentes');
         }
 
         $usuario->senha1 = password_hash($postVars['senha1'], PASSWORD_BCRYPT) ?? '';
         $usuario->senha2 = password_hash($postVars['senha2'], PASSWORD_BCRYPT) ?? '';
 
         $usuario->cadastrar($request);
-        $request->obterRotar()->redirecionar('/usuario/login?status=cadastrado');
+        $request->obterRota()->redirecionar('/usuario/login?status=cadastrado');
     }
 }

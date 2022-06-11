@@ -71,7 +71,7 @@ class Pagina
         $pages = $obPaginacao->obterPaginas();
         if (count($pages) <= 1) return '';
         $links = '';
-        $url = $request->obterRotar()->obterUrlAtual();
+        $url = $request->obterRota()->obterUrlAtual();
         $queryParams = $request->getQueryParams();
 
         foreach ($pages as $page) {

@@ -102,14 +102,14 @@ final class Usuario extends Pagina
         $obUser->senha = password_hash($postVars['senha'], PASSWORD_BCRYPT) ?? '';
         $obUser->cadastrar();
 
-        $request->obterRotar()->redirecionar('/usuario/usuarios/' . $obUser->id . '/editar?status=criado');
+        $request->obterRota()->redirecionar('/usuario/usuarios/' . $obUser->id . '/editar?status=criado');
     }
 
     public static function obterEditarUsuario(object $request, int $id): string
     {
         $obUser = ModelUsuario::obterUsuarioPorId($id);
         if (!$obUser instanceof ModelUsuario) {
-            $request->obterRotar()->redirecionar('/usuario/usuarios');
+            $request->obterRota()->redirecionar('/usuario/usuarios');
         }
 
         $dados = [
@@ -128,7 +128,7 @@ final class Usuario extends Pagina
     {
         $obUser = ModelUsuario::obterUsuarioPorId($id);
         if (!$obUser instanceof ModelUsuario) {
-            $request->obterRotar()->redirecionar('/usuario/usuarios');
+            $request->obterRota()->redirecionar('/usuario/usuarios');
         }
 
         $postVars = $request->getPostVars();
@@ -137,14 +137,14 @@ final class Usuario extends Pagina
         $obUser->senha = $postVars['senha'] ? password_hash($postVars['senha'], PASSWORD_BCRYPT) : null;
         $obUser->atualizar();
 
-        $request->obterRotar()->redirecionar('/usuario/usuarios/' . $obUser->id . '/editar?status=alterado');
+        $request->obterRota()->redirecionar('/usuario/usuarios/' . $obUser->id . '/editar?status=alterado');
     }
 
     public static function obterApagarUsuario(object $request, int $id): string
     {
         $obUser = ModelUsuario::obterUsuarioPorId($id);
         if (!$obUser instanceof ModelUsuario) {
-            $request->obterRotar()->redirecionar('/usuario/usuarios');
+            $request->obterRota()->redirecionar('/usuario/usuarios');
         }
 
         $dados = [
@@ -152,7 +152,7 @@ final class Usuario extends Pagina
             'nome' => $obUser->nome,
             'email' => $obUser->email,
         ];
-        $content = View::renderizar('usuarios/modulos/usuarios/delete', $dados);
+        $content = View::renderizar('usuarios/modulos/usuarios/apagar', $dados);
         return parent::obterPainel('Apagar Usuário - Usuário - Desafio JSL', $content, 'usuarios');
     }
 
@@ -160,10 +160,10 @@ final class Usuario extends Pagina
     {
         $obUser = ModelUsuario::obterUsuarioPorId($id);
         if (!$obUser instanceof ModelUsuario) {
-            $request->obterRotar()->redirecionar('/usuario/usuarios');
+            $request->obterRota()->redirecionar('/usuario/usuarios');
         }
 
         $obUser->excluir();
-        $request->obterRotar()->redirecionar('/usuario/usuarios?status=apagado');
+        $request->obterRota()->redirecionar('/usuario/usuarios?status=apagado');
     }
 }

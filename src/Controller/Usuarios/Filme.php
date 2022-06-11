@@ -71,7 +71,7 @@ final class Filme extends Pagina
     {
         $objFavorito = ModelFilme::obterFilmePorId($id);
         if (!$objFavorito instanceof ModelFilme) {
-            $request->obterRotar()->redirecionar('/usuario/filmes');
+            $request->obterRota()->redirecionar('/usuario/filmes');
         }
 
         $dados = [
@@ -85,9 +85,9 @@ final class Filme extends Pagina
     public static function definirAceitarComoFavorito(object $request, int $id): mixed
     {
         $objFavoritoPorId = ModelFavorito::obterFilmeFavoritoPorId($id);
-        if (!empty($objFavoritoPorId)) {
+        if (empty($objFavoritoPorId)) {
             if (!$objFavoritoPorId instanceof ModelFavorito) {
-                $request->obterRotar()->redirecionar('/usuario/filmes');
+                $request->obterRota()->redirecionar('/usuario/filmes');
             }
         }
 
@@ -96,6 +96,6 @@ final class Filme extends Pagina
         $objFavorito->usuarioId = $_SESSION['usuario']['id'];
 
         $objFavorito->cadastrar();
-        $request->obterRotar()->redirecionar('/usuario/filmes?status=favoritado');
+        $request->obterRota()->redirecionar('/usuario/filmes?status=favoritado');
     }
 }

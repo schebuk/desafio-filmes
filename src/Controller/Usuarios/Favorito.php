@@ -93,8 +93,30 @@ final class Favorito extends Pagina
         return parent::obterPainel('Filmes Favoritos - Usuário - Desafio JSL', $conteudo, 'favoritos');
     }
 
-    public static function removerComoFavorito($request): string
+    public static function removerFavorito(object $request, int $id): string
     {
-        return '';
+        $objFavorito = ModelFavorito::obterFilmeFavoritoPorId($id);
+        if (empty($objFavorito)) {
+            if (!$objFavorito instanceof ModelFavorito) {
+                $request->obterRota()->redirecionar('/usuario/favoritos');
+            }
+        }
+
+        $dados = [
+            'header' => 'Apagar Filme Favorito',
+        ];
+        $content = View::renderizar('usuarios/modulos/favoritos/apagar', $dados);
+        return parent::obterPainel('Apagar Filme Favorito - Usuário - Desafio JSL', $content, 'favoritos');
+    }
+
+    public static function definirRemoverFavorito(object $request, int $id): mixed
+    {
+        $objFavorito = ModelFavorito::obterFilmeFavoritoPorId($id);
+        if (!$objFavorito instanceof ModelFavorito) {
+            $request->obterRota()->redirecionar('/usuario/favoritos');
+        }
+
+        $objFavorito->excluir();
+        $request->obterRota()->redirecionar('/usuario/favoritos?status=apagado');
     }
 }

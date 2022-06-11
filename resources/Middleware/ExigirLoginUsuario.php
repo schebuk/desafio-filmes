@@ -9,7 +9,7 @@ final class ExigirLoginUsuario
     public function handle($request, $next): object
     {
         if (!Sessao::estaLogado()) {
-            $request->obterRotar()->redirecionar('/usuario/login');
+            $request->obterRota()->redirecionar('/usuario/login');
         }
         return $next($request);
     }

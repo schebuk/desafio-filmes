@@ -31,7 +31,7 @@ final class ModelFavorito
 
     public static function obterFilmeFavoritoPorId(int $id)
     {
-        return self::listarFilmesfavoritosSemJoin('status = "A" AND id = ' . $id)->fetchObject(self::class);
+        return self::listarFilmesfavoritosSemJoin('status = "A" AND filme_id = ' . $id)->fetchObject(self::class);
     }
 
     public function cadastrar(): bool

@@ -30,7 +30,7 @@ class Request
         $this->uri = $xUri[0];
     }
 
-    public function obterRotar(): object
+    public function obterRota(): object
     {
         return $this->router;
     }

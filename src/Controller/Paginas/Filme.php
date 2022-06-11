@@ -26,7 +26,7 @@ class Filme extends Pagina
         return $retorno;
     }
 
-    private static function validarSeFilmeEstaGravadoBd(array $filme): void
+    private static function validarSeFilmeEstaGravadoBd(array $filme)
     {
         try {
             $objFilme = new ModelFilme();

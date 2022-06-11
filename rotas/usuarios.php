@@ -105,12 +105,21 @@ $response->post('/usuario/filmes/{id}/definir', [
     }
 ]);
 
-$response->post('/usuario/favoritos/remover', [
+$response->get('/usuario/favoritos/{id}/apagar', [
     'middlewares' => [
         'exigir-login',
     ],
-    function ($request) {
-        return new Response(200, Usuarios\Favorito::removerComoFavorito($request));
+    function ($request, $id) {
+        return new Response(200, Usuarios\Favorito::removerFavorito($request, $id));
+    }
+]);
+
+$response->post('/usuario/favoritos/{id}/apagar', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request, $id) {
+        return new Response(200, Usuarios\Favorito::definirRemoverFavorito($request, $id));
     }
 ]);
 
