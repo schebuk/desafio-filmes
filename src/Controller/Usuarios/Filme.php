@@ -4,15 +4,32 @@ declare(strict_types=1);
 
 namespace Src\Controller\Usuarios;
 
+use DevUtils\Format;
 use Resources\{
     Funcoes,
     Paginacao,
     View,
 };
+use Src\Model\ModelFavorito;
 use Src\Model\ModelFilme;
 
 final class Filme extends Pagina
 {
+    private static function obterStatus(object $request): string
+    {
+        $queryParams = $request->getQueryParams();
+        if (!isset($queryParams['status']))  return '';
+
+        switch ($queryParams['status']) {
+            case 'favoritado':
+                return Alerta::obterAlerta('success', 'O filme foi <strong>favoritado</strong> com sucesso!');
+                break;
+            case 'apagado':
+                return Alerta::obterAlerta('success', 'O filme foi <strong>apagado dos favoritos</strong> com sucesso!');
+                break;
+        }
+    }
+
     private static function obterItemFilme($request, &$obPaginacao): string
     {
         $itens = '';
@@ -28,6 +45,7 @@ final class Filme extends Pagina
             $dados = [
                 'id' => $objFilme->id,
                 'titulo' => $objFilme->titulo,
+                'slug' => Format::slugfy($objFilme->titulo),
                 'imagem' => $objFilme->imagem,
                 'descricao' => $funcoes->limitarCaracteres($objFilme->descricao, 49, false),
                 'classificacao' => $objFilme->classificacao,
@@ -37,44 +55,47 @@ final class Filme extends Pagina
         return $itens;
     }
 
-    // private static function consumirApiCurlTmdb(): array
-    // {
-    //     $busca = 'Panico';
-    //     $url = 'https://api.themoviedb.org/3/search/movie?query=' . $busca . '&api_key=' . TMDB_KEY . '&language=pt-BR&page=1';
-    //     $ch = curl_init($url);
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    //     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-    //     $retorno = json_decode(curl_exec($ch), true);
-    //     return $retorno;
-    // }
-
-    // private static function obterCatalogoFilmes(): string
-    // {
-    //     $itens = '';
-    //     $retorno = self::consumirApiCurlTmdb()['results'];
-    //     $funcoes = new Funcoes();
-    //     foreach ($retorno as $filme) {
-    //         $dados = [
-    //             'id' => $filme['id'],
-    //             'titulo' => $filme['original_title'],
-    //             'imagem' => !empty($filme['poster_path']) ? 'https://image.tmdb.org/t/p/w185' . $filme['poster_path'] : IMG . '/semImagem.png',
-    //             'descricao' => !empty($filme['overview']) ? $funcoes->limitarCaracteres($filme['overview'], 49, false) : 'Nenhuma descrição cadastrada!',
-    //             'classificacao' => $filme['vote_average'],
-    //         ];
-    //         $itens .= View::renderizar('usuarios/modulos/filmes/item', $dados);
-    //     }
-    //     return $itens;
-    // }
-
     public static function listarFilmes(object $request): string
     {
         $dados = [
             'header' => 'Catálogo de Filmes',
             'itens' => self::obterItemFilme($request, $obPaginacao),
             'paginacao' => parent::obterPaginacao($request, $obPaginacao),
+            'status' => self::obterStatus($request),
         ];
         $conteudo = View::renderizar('usuarios/modulos/filmes/index', $dados);
         return parent::obterPainel('Catálogo de Filmes - Usuário - Desafio JSL', $conteudo, 'filmes');
+    }
+
+    public static function definirComoFavorito(object $request, int $id): string
+    {
+        $objFavorito = ModelFilme::obterFilmePorId($id);
+        if (!$objFavorito instanceof ModelFilme) {
+            $request->obterRotar()->redirecionar('/usuario/filmes');
+        }
+
+        $dados = [
+            'header' => 'Adicionar como Favorito',
+            'titulo' => $objFavorito->titulo,
+        ];
+        $conteudo = View::renderizar('usuarios/modulos/filmes/definir', $dados);
+        return parent::obterPainel('Adicionar como Favorito - Usuário - Desafio JSL', $conteudo, 'filmes');
+    }
+
+    public static function definirAceitarComoFavorito(object $request, int $id): mixed
+    {
+        $objFavoritoPorId = ModelFavorito::obterFilmeFavoritoPorId($id);
+        if (!empty($objFavoritoPorId)) {
+            if (!$objFavoritoPorId instanceof ModelFavorito) {
+                $request->obterRotar()->redirecionar('/usuario/filmes');
+            }
+        }
+
+        $objFavorito = new ModelFavorito();
+        $objFavorito->id = $id ? intval($id) : '';
+        $objFavorito->usuarioId = $_SESSION['usuario']['id'];
+
+        $objFavorito->cadastrar();
+        $request->obterRotar()->redirecionar('/usuario/filmes?status=favoritado');
     }
 }

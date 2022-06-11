@@ -2,6 +2,10 @@
 
 <div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>
 
-{{itens}}
+{{status}}
 
-{{paginacao}}
+<div class="row">
+    {{itens}}
+
+    {{paginacao}}
+</div>

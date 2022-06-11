@@ -11,7 +11,9 @@
             <li class="list-group-item"><small>Classificação:</small> {{classificacao}}</li>
         </ul>
         <div class="card-body">
-            <a href="#" class="card-link"><em class="fas fa-heart fa-fw"></em></a>
+            <a href="{{APP}}/usuario/filmes/{{id}}/definir" class="card-link">
+                <em class="far fa-fw fa-heart"></em>
+            </a>
         </div>
     </div>
 </div>

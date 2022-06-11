@@ -26,6 +26,14 @@ class Sessao
         return true;
     }
 
+    public static function obter($valor): ?string
+    {
+        if (isset($_SESSION[$valor])) {
+            return $_SESSION[$valor];
+        }
+        return null;
+    }
+
     public static function estaLogado()
     {
         self::iniciar();

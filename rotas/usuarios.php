@@ -87,6 +87,33 @@ $response->get('/usuario/favoritos', [
     }
 ]);
 
+$response->get('/usuario/filmes/{id}/definir', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request, $id) {
+        return new Response(200, Usuarios\Filme::definirComoFavorito($request, $id));
+    }
+]);
+
+$response->post('/usuario/filmes/{id}/definir', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request, $id) {
+        return new Response(200, Usuarios\Filme::definirAceitarComoFavorito($request, $id));
+    }
+]);
+
+$response->post('/usuario/favoritos/remover', [
+    'middlewares' => [
+        'exigir-login',
+    ],
+    function ($request) {
+        return new Response(200, Usuarios\Favorito::removerComoFavorito($request));
+    }
+]);
+
 /** Usuários */
 
 $response->get('/usuario/usuarios', [
@@ -154,20 +181,20 @@ $response->post('/usuario/usuarios/{id}/apagar', [
 
 /** Rotas da página de Erros */
 
-$response->get('/page-not-found', [
+$response->get('/pagina-nao-encontrada', [
     function () {
-        return new Response(200, Usuarios\Erro::obterErro('404', 'Ooops! That page can not be found!'));
+        return new Response(200, Usuarios\Erro::obterErro('404', 'Ooops! Esta página não pode ser encontrada!'));
     }
 ]);
 
-$response->get('/method-not-allowed', [
+$response->get('/metodo-nao-permitido', [
     function () {
-        return new Response(200, Usuarios\Erro::obterErro('405', 'Ooops! The method informed is not allowed!'));
+        return new Response(200, Usuarios\Erro::obterErro('405', 'Ooops! O método informado não é permitido!'));
     }
 ]);
 
-$response->get('/internal-server-error', [
+$response->get('/erro-interno-do-servidor', [
     function () {
-        return new Response(200, Usuarios\Erro::obterErro('500', 'There was some error on the server!'));
+        return new Response(200, Usuarios\Erro::obterErro('500', 'Algo de errado não esta certo!'));
     }
 ]);

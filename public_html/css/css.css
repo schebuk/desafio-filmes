@@ -11,3 +11,7 @@ textarea {
     height: 2.35rem;
 }
 
+.card .card-body .btn {
+    padding: 0 !important;
+    margin: 0 !important;
+}

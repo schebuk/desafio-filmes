@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Src\Controller\Usuarios;
 
 use Resources\{
+    Funcoes,
     Paginacao,
     View,
 };
@@ -17,6 +18,8 @@ final class Favorito extends Pagina
     private static function obterItemFilmeFavorito($request, &$obPaginacao): string
     {
         $itens = '';
+        $funcoes = new Funcoes();
+
         $qtdeTotal = ModelFavorito::listarFilmesFavoritos(
             'fa.status = "A" AND fa.apagado_em IS NULL AND fa.usuario_id = "' . $_SESSION['usuario']['id'] . '"',
             'fa.criado_em DESC',
@@ -36,6 +39,7 @@ final class Favorito extends Pagina
             $obPaginacao->obterLimite(),
             'fa.*, fi.id AS idFilme,
             fi.titulo AS tituloFilme,
+            fi.imagem AS imagemFilme,
             fi.descricao AS descricaoFilme,
             fi.classificacao AS classificacaoFilme,
             fi.criado_em AS criadoEm',
@@ -47,7 +51,8 @@ final class Favorito extends Pagina
             $dados = [
                 'id' => $favoritos->idFilme,
                 'titulo' => $favoritos->tituloFilme,
-                'descricao' => $favoritos->descricaoFilme,
+                'imagem' => $favoritos->imagemFilme,
+                'descricao' => $funcoes->limitarCaracteres($favoritos->descricaoFilme, 49, false),
                 'classificacao' => $favoritos->classificacaoFilme,
                 'data' => date('d/m/Y', strtotime($favoritos->criadoEm)),
             ];
@@ -86,5 +91,10 @@ final class Favorito extends Pagina
         ];
         $conteudo = View::renderizar('usuarios/modulos/favoritos/index', $dados);
         return parent::obterPainel('Filmes Favoritos - Usuário - Desafio JSL', $conteudo, 'favoritos');
+    }
+
+    public static function removerComoFavorito($request): string
+    {
+        return '';
     }
 }
