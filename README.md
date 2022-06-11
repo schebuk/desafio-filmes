@@ -59,11 +59,11 @@ Não esqueça das validações!
 
 ### Para iniciar o projeto
 
-- Clone o projeto do repositório
+- Clone o projeto do repositório remoto https://github.com/baccijsl/desafio
 - Execute o composer install
 - Execute o composer dump-autoload
 - Crie um banco de dados com o nome que desejar e importe o arquivo `db_desafio.sql`
 - Altere o arquivo `config\configDatabase.php` com suas credenciais de acesso ao banco de dados
-- Altere o arquivo `config\configDefinicoes.php` onde é definido a constante APP para o diretório do seu projeto (local)
+- Altere o arquivo `config\configDefinicoes.php` onde é definido a constante `APP` para o diretório local do seu projeto
 - Localmente, acesse http://localhost/SEU_DIRETORIO_LOCAL
 - Have fun and rock on :metal:!
