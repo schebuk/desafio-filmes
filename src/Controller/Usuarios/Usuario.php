@@ -56,7 +56,7 @@ final class Usuario extends Pagina
     private static function listarBotaoAdicionar(): string
     {
         $html = '<div class="d-flex flex-wrap justify-content-between align-items-center py-2 mt-3 border-top"></div>';
-        $html .= '<a href="{{APP}}/usuario/usuarios/novo">';
+        $html .= '<a href="' . APP . '/usuario/usuarios/novo">';
         $html .= '<button type="button" class="btn btn-success btn-sm">';
         $html .= '<em class="fas fa-plus-square fa-fw"></em> Cadastrar Usuário';
         $html .= '</button>';

@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-md-6 col-lg-3 col-sm-12">
     <div class="card mb-3" style="width: 16rem;">
         <img src="{{imagem}}" class="card-img-top" style="height:277px" alt="{{titulo}}">
         <div class="card-body">

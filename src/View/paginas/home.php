@@ -8,7 +8,7 @@
                 conhecimento em banco de dados, conhecimento de API's e lógica.
             </p>
         </div>
-        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden">
+        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden text-sm-center">
             <img class="rounded-lg-3" src="{{IMG}}/logo-jsl.png" alt="Desafio JSL" width="255">
         </div>
     </div>

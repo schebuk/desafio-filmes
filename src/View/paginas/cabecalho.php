@@ -7,7 +7,7 @@
             <li class="nav-item"><a href="{{APP}}" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="{{APP}}/filmes" class="nav-link">Catálogo de Filmes</a></li>
         </ul>
-        <div class="col-md-3 text-end">
+        <div class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0 nav-pills text-lg-end text-md-end">
             <a href="{{APP}}/usuario" class="btn btn-outline-primary me-2">Acesso do Usuário</a>
         </div>
     </header>
