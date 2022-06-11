@@ -85,7 +85,7 @@ final class Filme extends Pagina
     public static function definirAceitarComoFavorito(object $request, int $id): mixed
     {
         $objFavoritoPorId = ModelFavorito::obterFilmeFavoritoPorId($id);
-        if (empty($objFavoritoPorId)) {
+        if (!empty($objFavoritoPorId)) {
             if (!$objFavoritoPorId instanceof ModelFavorito) {
                 $request->obterRota()->redirecionar('/usuario/filmes');
             }
