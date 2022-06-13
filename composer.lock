@@ -1,0 +1,126 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "92e28d51efdd7c6d689575ae1305d1f6",
+    "packages": [
+        {
+            "name": "brunoconte3/dev-utils",
+            "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brunoconte3/dev-utils.git",
+                "reference": "42cbef0c16703a1f29c23bce468f52a5ac3d1f1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brunoconte3/dev-utils/zipball/42cbef0c16703a1f29c23bce468f52a5ac3d1f1b",
+                "reference": "42cbef0c16703a1f29c23bce468f52a5ac3d1f1b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "1.5.4",
+                "phpunit/phpunit": "9.5.4"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-mbstring": "to use Format::lower() etc..."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DevUtils\\": "src/",
+                    "DevUtils\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Conte",
+                    "email": "brunoconte3@gmail.com",
+                    "role": "Creator/Developer"
+                },
+                {
+                    "name": "Walter de Padua Junior",
+                    "email": "wpadua8@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jonathan Bersot Augusto",
+                    "email": "jonathanbersot21@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Robson Willian da Silva",
+                    "email": "robsonwillian.ads@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rafael Henrique Barbosa Pereira",
+                    "email": "rafael@agenciab33.com.br",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Rafael Gomes de Souza",
+                    "email": "gomes.webads@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Adalberto Silveira Nápoles",
+                    "email": "adalbertosn1982@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Antonio Cruz",
+                    "email": "ajcf97@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Caio Brioli",
+                    "email": "caiobrioli777@hotmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Willian Joaquim Barros Lúcio",
+                    "email": "willian_jbl@hotmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "O dev-utils é completo, valida, formata, compara dados, além de utilitários!",
+            "keywords": [
+                "array",
+                "compare",
+                "dev",
+                "format",
+                "testing",
+                "utility",
+                "utils",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/brunoconte3/dev-utils/issues",
+                "source": "https://github.com/brunoconte3/dev-utils/tree/1.12.1"
+            },
+            "time": "2022-05-20T19:50:09+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4.13"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
