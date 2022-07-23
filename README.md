@@ -1,3 +1,5 @@
+renomear o .env.exemple para .env e alterar as configuracoes de banco de dados
+
 rodar o 
 ```
 composer install 
